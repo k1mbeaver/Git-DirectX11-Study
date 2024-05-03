@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\0.">
+      <UniqueIdentifier>{00c1870a-8b9e-4674-93a8-92cde805da43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\1.">
+      <UniqueIdentifier>{b517ebac-068c-45ff-8161-65d01a555c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\2.">
+      <UniqueIdentifier>{bda6fe69-77ee-457d-b467-11c9f3963d8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\3.">
+      <UniqueIdentifier>{d7756aa1-ffa6-41c9-b47e-2ac6050e49c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\0.">
+      <UniqueIdentifier>{ee63b0fd-8c10-4f88-9bb2-060808f1bc81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\1.">
+      <UniqueIdentifier>{5b662750-69f9-4f47-a131-0b2270bd54cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\2.">
+      <UniqueIdentifier>{e0dcedc6-887d-4106-9568-85ab59f6bfe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\3.">
+      <UniqueIdentifier>{bd666216-f913-4263-939e-f24e2690b045}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXTest.h">
+      <Filter>헤더 파일\0.</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemClass.h">
+      <Filter>헤더 파일\1.</Filter>
+    </ClInclude>
+    <ClInclude Include="InputClass.h">
+      <Filter>헤더 파일\2.</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsClass.h">
+      <Filter>헤더 파일\2.</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DClass.h">
+      <Filter>헤더 파일\3.</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DirectXTest.cpp">
+      <Filter>소스 파일\0.</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemClass.cpp">
+      <Filter>소스 파일\1.</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsClass.cpp">
+      <Filter>소스 파일\2.</Filter>
+    </ClCompile>
+    <ClCompile Include="InputClass.cpp">
+      <Filter>소스 파일\2.</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DClass.cpp">
+      <Filter>소스 파일\3.</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DirectXTest.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="DirectXTest.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
