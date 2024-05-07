@@ -1,32 +1,26 @@
-#include "SystemClass.h"
+////////////////////////////////////////////////////////////////////////////////
+// Filename: systemclass.cpp
+////////////////////////////////////////////////////////////////////////////////
+#include "systemclass.h"
 
-// 클래스 생성자는 포인터 객체를 null로 초기화한다.
-// 이러한 객체는 초기화가 실패했을 때 지워야 하기 때문에 굉장히 중요한 과정이다.
-// 만약 개체가 null이 아니면 지울 대상으로 가정한다.
-// 그래서 애플리케이션에서 모든포인터와 변수를 null로 초기화하는 것이 좋다.
-// 어떤 릴리즈 빌드는 그렇게 하지 않으면 실패하기도 한다.
+
 SystemClass::SystemClass()
 {
 	m_Input = 0;
 	m_Graphics = 0;
 }
 
-// 빈 복사 생성자와 소멸자를 만든다.
-// 만약 만들지 않으면 일부 컴파일러는 이를 자동으로 생성하므로 비워서 만드는게 좋다.
-// 또한 소멸자에서는 객체를 파괴하지 않는다.
-// 소멸자가 불리지 않을 수도 있기 때문이다.
-// ExitThread()와 같은 특정한 윈도 함수는 클래스 소멸자를 부르지 않아 memory leak을 일으키는 것으로 알려져 있다.
-// 물론 더 안전한 버전의 함수를 호출할 수도 있지만, 윈도 운영체제에서는 더욱 조심해서 짜려고 한다.
+
 SystemClass::SystemClass(const SystemClass& other)
 {
 }
 
+
 SystemClass::~SystemClass()
 {
 }
-// 다음 Initialize 함수는 어플리케이션의 모든 설정을 수행한다.
-// 먼저 어플리케이션에서 사용할 창을 생성하는 InitializeWindows를 호출한다.
-// 또한 Input 과 Graphics 객체를 초기화한다.
+
+
 bool SystemClass::Initialize()
 {
 	int screenWidth, screenHeight;
@@ -40,24 +34,14 @@ bool SystemClass::Initialize()
 	// Initialize the windows api.
 	InitializeWindows(screenWidth, screenHeight);
 
-	// Create the input object.  This object will be used to handle reading the keyboard input from the user.
+	// Create and initialize the input object.  This object will be used to handle reading the keyboard input from the user.
 	m_Input = new InputClass;
-	if (!m_Input)
-	{
-		return false;
-	}
 
-	// Initialize the input object.
 	m_Input->Initialize();
 
-	// Create the graphics object.  This object will handle rendering all the graphics for this application.
+	// Create and initialize the application class object.  This object will handle rendering all the graphics for this application.
 	m_Graphics = new GraphicsClass;
-	if (!m_Graphics)
-	{
-		return false;
-	}
 
-	// Initialize the graphics object.
 	result = m_Graphics->Initialize(screenWidth, screenHeight, m_hwnd);
 	if (!result)
 	{
@@ -67,12 +51,10 @@ bool SystemClass::Initialize()
 	return true;
 }
 
-// Shutdown 함수는 Clean Up을 수행한다.
-// Input과 Graphics에 관련된 모든것을 종료하고 release한다.
-// 창과 그와 관련된 handle도 모두 닫는다.
+
 void SystemClass::Shutdown()
 {
-	// Release the graphics object.
+	// Release the application class object.
 	if (m_Graphics)
 	{
 		m_Graphics->Shutdown();
@@ -93,17 +75,7 @@ void SystemClass::Shutdown()
 	return;
 }
 
-// Run 함수는 어플리케이션의 루프와 종료 전까지의 모든 프로세스가 실행되는 곳이다.
-// 어플리케이션의 프로세스는 loop라고 불리는 프레임 함수에서 처리된다.
-// 나머지 코드는 이것을 염두에 두고 작성될 것이므로 반드시 이해해야 하는 개념이다.
-// 수도 코드는 다음과 같다
-/*
-while not done
-	check for windows system messages
-	process system messages
-	process application loop
-	check if user wanted to quit during the frame processing
-*/
+
 void SystemClass::Run()
 {
 	MSG msg;
@@ -143,10 +115,8 @@ void SystemClass::Run()
 
 	return;
 }
-// 다음의 Frame 함수는 어플리케이션의 모든 프로세스가 완료되는 곳이다.
-// 체크하는건 꽤 단순한데, 사용자가 esc를 눌러 종료하길 원하는지 확인하면 된다.
-// 만약 종료를 원하지 않을 땐 Graphics 객체를 호출해 해당 프레임을 처리하여 렌더링하도록 한다.
-// 어플리케이션이 확장되면서 우리는 여기에 더 많은 코드를 삽입할 것이다.
+
+
 bool SystemClass::Frame()
 {
 	bool result;
@@ -158,7 +128,7 @@ bool SystemClass::Frame()
 		return false;
 	}
 
-	// Do the frame processing for the graphics object.
+	// Do the frame processing for the application object.
 	result = m_Graphics->Frame();
 	if (!result)
 	{
@@ -167,10 +137,8 @@ bool SystemClass::Frame()
 
 	return true;
 }
-// MessageHandler 함수는 창의 시스템 메세지가 바로 전달되는 곳이다.
-// 이렇게 하면 우리가 관심있는 특정한 정보들에 대해 관찰할 수 있다.
-// 현재 우리는 키가 눌렸는지 떼어졌는지를 읽어서 Input 객체에 전달할 것이다.
-// 모든 다른 정보들은 윈도우 기본 메세지 핸들러로 다시 전달된다.
+
+
 LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
 	switch (umsg)
@@ -198,14 +166,8 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 	}
 	}
 }
-// InitializeWindows 함수는 우리가 렌더링할 창을 만드는 코드를 넣는 곳이다.
-// screenWidth와 screenHeight을 반환하여 모든 애플리케이션 전반에 사용할 수 있도록 한다.
-// 기본 설정으로 창을 생성하여 보더가 없는 단순한 검정 창을 초기화 할 것이다.
-// 이 함수는 FULL_SCREEN이라는 전역 변수에 따라 창 모드 혹은 전체화면 모드를 만들어 낸다.
-// 이 값이 true이면 전체 데스크탑 화면을 모두 가리게끔 만들어 질 것이다.
-// 이 값이 false이면 화면 중앙에 800x600의 창을 만든다.
-// GraphicsClass.h 최상단에 이 전역 변수를 수정할 수 있도록 작성해 두었다.
-// 이 파일의 헤더가 아닌 그 파일의 전역 변수로 선언한 이유를 나중에 이해할 수 있다.
+
+
 void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 {
 	WNDCLASSEX wc;
@@ -286,8 +248,8 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 
 	return;
 }
-// 그냥 말그대로 창을 끈다.
-// 스크린 설정을 보통으로 돌리고 창과 핸들을 release 한다.
+
+
 void SystemClass::ShutdownWindows()
 {
 	// Show the mouse cursor.
@@ -313,9 +275,7 @@ void SystemClass::ShutdownWindows()
 	return;
 }
 
-// WndProc 함수는 창이 메세지를 보내는 곳이다.
-// 창을 초기화할때 상단의 InitializeWindows 함수에서 wc.IpfnWndProc = WndProc로 창의 이름을 전달한다.
-// SystemClass내에 정의된 MessageHandler 함수로 모든 메세지를 바로 전달함으로써 코드를 꺠끗하게 유지시킬 수 있다.
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	switch (umessage)

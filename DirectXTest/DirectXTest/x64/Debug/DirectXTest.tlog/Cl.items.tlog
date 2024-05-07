@@ -1,5 +1,12 @@
-D:\코딩\DirectXTest\D3DClass.cpp;D:\코딩\DirectXTest\DirectXTest\x64\Debug\D3DClass.obj
-D:\코딩\DirectXTest\DirectXTest.cpp;D:\코딩\DirectXTest\DirectXTest\x64\Debug\DirectXTest.obj
-D:\코딩\DirectXTest\GraphicsClass.cpp;D:\코딩\DirectXTest\DirectXTest\x64\Debug\GraphicsClass.obj
-D:\코딩\DirectXTest\InputClass.cpp;D:\코딩\DirectXTest\DirectXTest\x64\Debug\InputClass.obj
-D:\코딩\DirectXTest\SystemClass.cpp;D:\코딩\DirectXTest\DirectXTest\x64\Debug\SystemClass.obj
+D:\DirectX\DirectXTest\CameraClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\CameraClass.obj
+D:\DirectX\DirectXTest\ColorShaderClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\ColorShaderClass.obj
+D:\DirectX\DirectXTest\ModelClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\ModelClass.obj
+D:\DirectX\DirectXTest\ModelClass.h;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\ModelClass.obj
+D:\DirectX\DirectXTest\ObjectManager.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\ObjectManager.obj
+D:\DirectX\DirectXTest\D3DClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\D3DClass.obj
+D:\DirectX\DirectXTest\DirectXTest.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\DirectXTest.obj
+D:\DirectX\DirectXTest\GraphicsClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\GraphicsClass.obj
+D:\DirectX\DirectXTest\InputClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\InputClass.obj
+D:\DirectX\DirectXTest\SystemClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\SystemClass.obj
+D:\DirectX\DirectXTest\TestObject.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\TestObject.obj
+D:\DirectX\DirectXTest\TestObject.h;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\TestObject.obj

@@ -37,6 +37,18 @@
     <Filter Include="헤더 파일\3.">
       <UniqueIdentifier>{bd666216-f913-4263-939e-f24e2690b045}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\4. Object">
+      <UniqueIdentifier>{cca12f9e-c39b-4f69-8bd0-95cd6225766e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\4. Object">
+      <UniqueIdentifier>{130f36c0-5381-4bc3-bd0b-f31f2f626f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\VertexShader">
+      <UniqueIdentifier>{06e23960-ca4e-4f6f-982a-4cb3ed6a91ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\PixelShader">
+      <UniqueIdentifier>{77b6a2f4-b5a4-4d7a-b446-0af2f66a6298}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -63,6 +75,15 @@
     <ClInclude Include="D3DClass.h">
       <Filter>헤더 파일\3.</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>헤더 파일\4. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraClass.h">
+      <Filter>헤더 파일\3.</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorShaderClass.h">
+      <Filter>헤더 파일\3.</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectXTest.cpp">
@@ -80,6 +101,27 @@
     <ClCompile Include="D3DClass.cpp">
       <Filter>소스 파일\3.</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\4. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TestObject.h">
+      <Filter>헤더 파일\4. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TestObject.cpp">
+      <Filter>소스 파일\4. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelClass.h">
+      <Filter>헤더 파일\3.</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelClass.cpp">
+      <Filter>소스 파일\3.</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraClass.cpp">
+      <Filter>소스 파일\3.</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorShaderClass.cpp">
+      <Filter>소스 파일\3.</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectXTest.rc">
@@ -93,5 +135,13 @@
     <Image Include="DirectXTest.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Color.vs">
+      <Filter>소스 파일\VertexShader</Filter>
+    </None>
+    <None Include="Color.ps">
+      <Filter>소스 파일\PixelShader</Filter>
+    </None>
   </ItemGroup>
 </Project>
