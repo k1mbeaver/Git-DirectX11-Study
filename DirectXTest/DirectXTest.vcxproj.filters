@@ -84,6 +84,12 @@
     <ClInclude Include="ColorShaderClass.h">
       <Filter>헤더 파일\3.</Filter>
     </ClInclude>
+    <ClInclude Include="TextureShaderClass.h">
+      <Filter>헤더 파일\3.</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureClass.h">
+      <Filter>헤더 파일\3.</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectXTest.cpp">
@@ -122,6 +128,12 @@
     <ClCompile Include="ColorShaderClass.cpp">
       <Filter>소스 파일\3.</Filter>
     </ClCompile>
+    <ClCompile Include="TextureShaderClass.cpp">
+      <Filter>소스 파일\3.</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureClass.cpp">
+      <Filter>소스 파일\3.</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DirectXTest.rc">
@@ -141,6 +153,12 @@
       <Filter>소스 파일\VertexShader</Filter>
     </None>
     <None Include="Color.ps">
+      <Filter>소스 파일\PixelShader</Filter>
+    </None>
+    <None Include="Texture.vs">
+      <Filter>소스 파일\VertexShader</Filter>
+    </None>
+    <None Include="Texture.ps">
       <Filter>소스 파일\PixelShader</Filter>
     </None>
   </ItemGroup>

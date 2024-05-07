@@ -5,7 +5,8 @@ GraphicsClass::GraphicsClass()
 	m_Direct3D = 0;
 	m_Camera = 0;
 	m_Model = 0;
-	m_ColorShader = 0;
+	//m_ColorShader = 0;
+	m_TextureShader = 0;
 }
 
 
@@ -22,6 +23,7 @@ GraphicsClass::~GraphicsClass()
 bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 {
 	bool result;
+	char textureFilename[128];
 
 	m_Direct3D = new D3DClass;
 	if (!m_Direct3D)
@@ -37,10 +39,12 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 	}
 
 	m_Camera = new CameraClass;
-	m_Camera->SetPosition(0.0f, 0.0f, -15.0f);
+	m_Camera->SetPosition(0.0f, 0.0f, -5.0f);
 	
 	m_Model = new ModelClass;
-	result = m_Model->Initialize(m_Direct3D->GetDevice());
+	strcpy_s(textureFilename, "../DirectXTest/data/stone01.tga");
+
+	result = m_Model->Initialize(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), textureFilename);
 
 	if (!result)
 	{
@@ -48,6 +52,17 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		return false;
 	}
 
+	// Create and initialize the texture shader object.
+	m_TextureShader = new TextureShaderClass;
+
+	result = m_TextureShader->Initialize(m_Direct3D->GetDevice(), hwnd);
+	if (!result)
+	{
+		MessageBox(hwnd, L"Could not initialize the texture shader object.", L"Error", MB_OK);
+		return false;
+	}
+
+	/*
 	m_ColorShader = new ColorShaderClass;
 	result = m_ColorShader->Initialize(m_Direct3D->GetDevice(), hwnd);
 
@@ -56,13 +71,20 @@ bool GraphicsClass::Initialize(int screenWidth, int screenHeight, HWND hwnd)
 		MessageBox(hwnd, L"Could not initialize colorshader object", L"Error", MB_OK);
 		return false;
 	}
-
+	*/
 	return true;
 }
 
 
 void GraphicsClass::Shutdown()
 {
+	if (m_TextureShader)
+	{
+		m_TextureShader->Shutdown();
+		delete m_TextureShader;
+		m_TextureShader = 0;
+	}
+
 	if (m_Direct3D)
 	{
 		m_Direct3D->Shutdown();
@@ -70,13 +92,14 @@ void GraphicsClass::Shutdown()
 		m_Direct3D = 0;
 	}
 
+	/*
 	if (m_ColorShader)
 	{
 		m_ColorShader->Shutdown();
 		delete m_ColorShader;
 		m_ColorShader = 0;
 	}
-
+	*/
 	if (m_Model)
 	{
 		m_Model->Shutdown();
@@ -128,8 +151,17 @@ bool GraphicsClass::Render()
 	// 모델 정점 및 인덱스 버퍼를 그래픽 파이프라인에 배치하여 그리기를 준비합니다.
 	m_Model->Render(m_Direct3D->GetDeviceContext());
 
+	/*
 	// 컬러 셰이더를 사용하여 모델을 렌더링 합니다.
 	result = m_ColorShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix);
+	if (!result)
+	{
+		return false;
+	}
+	*/
+
+	// Render the model using the texture shader.
+	result = m_TextureShader->Render(m_Direct3D->GetDeviceContext(), m_Model->GetIndexCount(), worldMatrix, viewMatrix, projectionMatrix, m_Model->GetTexture());
 	if (!result)
 	{
 		return false;

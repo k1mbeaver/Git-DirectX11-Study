@@ -10,3 +10,5 @@ D:\DirectX\DirectXTest\InputClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Deb
 D:\DirectX\DirectXTest\SystemClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\SystemClass.obj
 D:\DirectX\DirectXTest\TestObject.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\TestObject.obj
 D:\DirectX\DirectXTest\TestObject.h;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\TestObject.obj
+D:\DirectX\DirectXTest\TextureClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\TextureClass.obj
+D:\DirectX\DirectXTest\TextureShaderClass.cpp;D:\DirectX\DirectXTest\DirectXTest\x64\Debug\TextureShaderClass.obj
