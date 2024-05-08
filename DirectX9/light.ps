@@ -1,0 +1,81 @@
+////////////////////////////////////////////////////////////////////////////////
+// Filename: light.ps
+////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////
+// GLOBALS //
+/////////////
+Texture2D shaderTexture : register(t0);
+SamplerState SampleType : register(s0);
+
+cbuffer LightBuffer
+{
+    // 조명 상수 버퍼는 새로운 float4 주변 색상 값으로 업데이트 됩니다. 이렇게 하면 외부 클래스에서 이 셰이더에 주변 색상을 설정할 수 있습니다.
+	float4 ambientColor;
+    float4 diffuseColor;
+    float3 lightDirection;
+	float padding;
+};
+
+
+//////////////
+// TYPEDEFS //
+//////////////
+struct PixelInputType
+{
+    float4 position : SV_POSITION;
+    float2 tex : TEXCOORD0;
+	float3 normal : NORMAL;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Pixel Shader
+////////////////////////////////////////////////////////////////////////////////
+float4 LightPixelShader(PixelInputType input) : SV_TARGET
+{
+	float4 textureColor;
+	float3 lightDir;
+	float lightIntensity;
+	float4 color;
+
+
+	// Sample the pixel color from the texture using the sampler at this texture coordinate location.
+	textureColor = shaderTexture.Sample(SampleType, input.tex);
+
+    // 출력 색상 값을 기본 주변 색상을 설정합니다. 이제 모든 픽셀은 최소 주변 색상 값으로 조명됩니다.
+    // 기본 출력 색상을 모든 픽셀의 주변광 값으로 설정합니다.
+	// Set the default output color to the ambient light value for all pixels.
+    color = ambientColor;
+
+    // 계산을 위하여 빛의 방향을 반전시킵니다.
+	// Invert the light direction for calculations.
+    lightDir = -lightDirection;
+
+    // 이 픽셀의 빛의 양을 계산합니다.
+    // Calculate the amount of light on this pixel.
+    lightIntensity = saturate(dot(input.normal, lightDir));
+
+    // N 도트 L이 0보다 큰지 확인하세요.
+    // 만약에 그렇다면 주변 색상에 확산 색상을 추가하십시오. 그렇지 않다면 확산 색상을 추가하지 않도록 주의해야 합니다.
+    // 그 이유는 확산 색상이 음수 일 수 있고 올바르지 않은 추가 시 주변 색상의 일부를 뺼 것이기 때문입니다.
+	if(lightIntensity > 0.0f)
+    {
+        // 확산 색상과 빛의 강도에 따라 최종 확산 색상을 결정합니다.
+        // Determine the final diffuse color based on the diffuse color and the amount of light intensity.
+        color += (diffuseColor * lightIntensity);
+    }
+
+    // 주변 및 확산의 조합이 1보다 클 수 있으므로 최종 출력 조명 색상을 포화시키십시오
+
+    // 최종 조명 색상을 포화시킵니다.
+    // Saturate the final light color.
+    color = saturate(color);
+
+    // Multiply the texture pixel and the final diffuse color to get the final pixel color result.
+    // 3. 조명 효과만 보려면 주석 처리
+	color = color * textureColor;
+
+	return color;
+}
